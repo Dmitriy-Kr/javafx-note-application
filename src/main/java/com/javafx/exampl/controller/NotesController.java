@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class NotesController implements Initializable {
@@ -23,7 +24,11 @@ public class NotesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        try {
+            noteList.getItems().addAll(findAllNote());
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
     }
 
     public void createNote() throws ServiceException {
@@ -37,8 +42,13 @@ public class NotesController implements Initializable {
         noteList.getItems().add(createNoteId);
     }
 
-    public void deleteNote() {
+    public void deleteNote() throws ServiceException {
         Note selectedItem = noteList.getSelectionModel().getSelectedItem();
         noteList.getItems().remove(selectedItem);
+        noteService.delete(selectedItem);
+    }
+
+    public List<Note> findAllNote() throws ServiceException {
+        return noteService.findAll();
     }
 }
