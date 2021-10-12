@@ -15,10 +15,9 @@ import java.util.List;
 
 public class NoteDao {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/mydb" +
-            "?sslMode=DISABLED&serverTimzone=UTC&user=root&password=K50ABseries";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "root";
+    private static final String URL = "jdbc:mysql://localhost:3306/mydb";
+    private static final String USER = "root";
+    private static final String PASSWORD = "K50ABseries";
 
     public static final String INSERT_QUERY = "INSERT note(description, created_time) VALUE (?, ?)";
     public static final String DELETE_QUERY = "DELETE FROM note WHERE id = ?";
@@ -80,7 +79,6 @@ public class NoteDao {
     }
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(URL);//, USER, PASSWORD);
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
