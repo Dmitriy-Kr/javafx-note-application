@@ -19,9 +19,9 @@ public class NoteService {
         }
     }
 
-    public void delete(Note note) throws ServiceException {
+    public void delete(Integer id) throws ServiceException {
         try {
-            noteDao.delete(note);
+            noteDao.delete(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException("failed to delete from Database");

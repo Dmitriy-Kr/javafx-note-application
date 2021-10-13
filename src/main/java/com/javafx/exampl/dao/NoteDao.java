@@ -44,11 +44,11 @@ public class NoteDao {
         }
     }
 
-    public void delete(Note node) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY);
-            preparedStatement.setInt(1, node.getId());
+            preparedStatement.setInt(1, id);
             preparedStatement.execute();
 
         } catch (SQLException | ClassNotFoundException e) {

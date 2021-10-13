@@ -45,7 +45,7 @@ public class NotesController implements Initializable {
     public void deleteNote() throws ServiceException {
         Note selectedItem = noteList.getSelectionModel().getSelectedItem();
         noteList.getItems().remove(selectedItem);
-        noteService.delete(selectedItem);
+        noteService.delete(selectedItem.getId());
     }
 
     public List<Note> findAllNote() throws ServiceException {
