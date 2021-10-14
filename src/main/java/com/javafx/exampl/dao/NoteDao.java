@@ -38,7 +38,7 @@ public class NoteDao {
             int id = generatedKeys.getInt(1);
             note.setId(id);
             return note;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Failed to connect");
         }
@@ -51,7 +51,7 @@ public class NoteDao {
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Failed to connect");
         }
@@ -72,13 +72,13 @@ public class NoteDao {
                 noteList.add(note);
             }
             return noteList;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("Failed to connect");
         }
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
